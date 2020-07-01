@@ -1,0 +1,26 @@
+<a href="/read-book" id="read-book" class="btn btn-primary mb-3">Read Book</a>
+
+
+<div class="form-group">
+    <label class="mt-5">Name</label>
+    <input type="text" id="create-name" name="name" class="form-control" required>
+</div>
+<div class="form-group">
+    <label>Price</label>
+    <input type="number" id="create-price" min="1" name="price" class="form-control" required>
+</div>
+<div class="form-group">
+    <label>Description</label>
+    <textarea name="description" id="create-description" class="form-control" required></textarea>
+</div>
+<div class="form-group">
+    <label>Category</label>
+    <select id="create-category" name="category_id" class="form-control">
+    </select>
+</div>
+<div class="form-group">
+    <button type="submit" id="submit-create-book-form" class="btn btn-primary">Create Book</button>
+</div>
+
+<script src="app/books/read-book.js"></script>
+<script src="app/books/create-book.js"></script>
