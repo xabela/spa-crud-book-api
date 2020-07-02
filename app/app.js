@@ -1,14 +1,12 @@
-function init(){
+var list_book = [];
+var list_category = [];
+
+function init() {
     getBook();
+    getCategory();
 }
 
-function getBook() {
-    $.getJSON("http://localhost:5000/api/book/read.php", function(data) {   
-    })
-}
-
-init()
-
+init();
 
 let pathName = window.location.pathname.split('/')
 console.log(pathName);
@@ -38,22 +36,51 @@ var app_html = `
         }
     });
 
-// ubah judul tiap halaman
 function changeTitle(page_title){
     $('#page-title').text(page_title);
-
-    // ubah title tag 
     document.title = page_title;
 }
 
-// encoding form elements to string, converts form elements to a valid JSON object which 
-// can be used in your JavaScript application, diubah ke objek gt pokok intinya biar bisa dibaca js
-$.fn.serializeObject = function () {
-    var formData = {};
-    var formArray = this.serializeArray();
+function getCategory() {
+    $.getJSON("http://localhost:5000/api/category/read.php", function(data) {
+        list_category = data
+    });
+}
 
-    for(var i = 0, n = formArray.length; i < n; ++i)
-        formData[formArray[i].name] = formArray[i].value;
+function getBook() {
+    $.getJSON("http://localhost:5000/api/book/read.php", function(data) {
+        list_book = data;
+    });
+}
 
-    return formData;
-};
+function ajaxUpdate(data) {
+    $.ajax({
+        url: "http://localhost:5000/api/book/update.php",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(result){
+            console.log(result)
+            window.location.href = "read-book"
+        }, 
+        error: function(xhr, resp, text) {
+            console.log(text);
+        }
+    });
+}
+
+function ajaxCreate(data) {
+    $.ajax({
+        url: "http://localhost:5000/api/book/create.php",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(result){
+            console.log(result)
+            window.location.href = "read-book"
+        }, 
+        error: function(xhr, resp, text) {
+            console.log(text);
+        }
+    });
+}
