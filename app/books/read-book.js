@@ -1,10 +1,3 @@
-$(document).ready(function() {
-    showBooks();
-    $(document).on('click', '.read-book-button', function() {
-        showBooks();
-    });
-});
-
 function showBooks(){
     //ambil list booknya dari API
     $('#tabel-buku').empty(); //ngosingin isinya dulu, biar pas nambah atau ngehapus langsung bisa ngeload baru
@@ -35,11 +28,7 @@ function showBooks(){
     });
 }
 
-$(document).on('click', '#read-button', function() {
-    var book_id = $(this).attr('data-id');
-    console.log(book_id);
-})
-$(document).on('click', '#delete-button', function() {
+function deleteBook() {
     Swal.fire({
         title: 'Yakin akan menghapus?',
         text: "Data yang sudah dihapus tidak bisa dikembalikan!",
@@ -70,4 +59,14 @@ $(document).on('click', '#delete-button', function() {
             })
         }
     })
+}
+
+showBooks();
+
+$(document).on('click', '#read-button', function() {
+    var id_book = $(this).attr('data-id');
+    window.location.href = 'read-one?id=' + id_book;
+})
+$(document).on('click', '#delete-button', function() {
+    deleteBook();
 })

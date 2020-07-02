@@ -4,12 +4,10 @@ function init(){
 
 function getBook() {
     $.getJSON("http://localhost:5000/api/book/read.php", function(data) {   
-        return data
     })
 }
 
 init()
-console.log( )
 
 
 let pathName = window.location.pathname.split('/')
