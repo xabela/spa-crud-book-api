@@ -23,6 +23,34 @@ function showBooks(){
     changeTitle("MARLO BOOK STORE");
 }
 
+function searchBook(keyword) {
+    $('#tabel-buku').empty(); //ngosingin isinya dulu, biar pas nambah atau ngehapus langsung bisa ngeload baru
+    // console.log(keyword)
+    $.getJSON("http://localhost:5000/api/book/search.php?s=" + keyword, function(data) {
+        // console.log(data)
+    $.each(data.records, function(key,val) {
+            $('#tabel-buku').append(`
+            <tr>
+                <th scope="row">${val.name}</th>
+                <td>Rp ${val.price}</td>
+                <td>${val.category_name}</td>
+                
+                <td>
+                    <button class="btn btn-primary" id="read-button" data-id='` + val.id +`'>
+                        <i class="fa fa-info-circle"></i>
+                    </button>
+                    <button class="btn btn-info" id="edit-button" data-id='` + val.id +`'>
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" id="delete-button" data-id='` + val.id +`'>
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>`);
+    });
+    });
+}
+
 function deleteBook(id_book) {
     console.log(id_book)
     Swal.fire({
@@ -46,7 +74,7 @@ function deleteBook(id_book) {
                         'Datamu telah dihapus dari database',
                         'success'
                     )
-                    showBooks();
+                    window.location.href='/read-book'
                 },
                 error: function(xhr,resp, text) {
                     console.log(text);
@@ -72,4 +100,9 @@ $(document).on('click', '#delete-button', function() {
     var id_book = $(this).attr('data-id');
     console.log(id_book)
     deleteBook(id_book);
+})
+$(document).on('click', '#search-book', function(e) {
+    e.preventDefault();
+    var keywords = $('#keyword').val()
+    searchBook(keywords)
 })

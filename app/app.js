@@ -1,7 +1,6 @@
 var list_book = [];
 var list_category = [];
 
-console.log(list_book)
 function init() {
     getBook();
     getCategory();

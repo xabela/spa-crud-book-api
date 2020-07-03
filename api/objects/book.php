@@ -154,7 +154,7 @@ class Book {
                     categories c
                         ON b.category_id = c.id
                 WHERE
-                    b.name LIKE ? OR b.description LIKE ? OR b.name LIKE ?
+                    b.name LIKE ? OR b.description LIKE ? OR c.name LIKE ?
                 ORDER BY
                     b.created DESC";
 
