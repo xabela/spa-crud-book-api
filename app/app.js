@@ -10,15 +10,13 @@ init();
 
 let pathName = window.location.pathname.split('/')
 console.log(pathName);
-let page = pathName[1] == "" ? "read-book" : pathName[1];
+let page = pathName[1] == "" ? "dashboard" : pathName[1];
 console.log(pathName[1]);
 var app_html = `
-        <div class="container">
-            <div class="page-header mt-5">
-                <h1 id="page-title"></h1>
+            <div class="page-header mt-4 ml-2">
+                <h3 id="page-title"><b></b></h3><hr>
             </div>
             <div id="page-content"></div> 
-        </div>    
     `;
     $('#app').html(app_html);
 
@@ -78,6 +76,22 @@ function ajaxCreate(data) {
         success: function(result){
             console.log(result)
             window.location.href = "read-book"
+        }, 
+        error: function(xhr, resp, text) {
+            console.log(text);
+        }
+    });
+}
+
+function ajaxCreateCategory(data) {
+    $.ajax({
+        url: "http://localhost:5000/api/category/create.php",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(result){
+            console.log(result)
+            window.location.href = "read-category"
         }, 
         error: function(xhr, resp, text) {
             console.log(text);

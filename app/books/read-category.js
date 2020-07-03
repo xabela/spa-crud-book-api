@@ -1,12 +1,11 @@
-function showBooks(){
-    $('#tabel-buku').empty(); //ngosingin isinya dulu, biar pas nambah atau ngehapus langsung bisa ngeload baru
-    $.each(list_book.records, function(key,val) {
-        $('#tabel-buku').append(`
+function showCategories(){
+    $('#tabel-category').empty(); 
+    $.each(list_category, function(key,val) {
+        $('#tabel-category').append(`
             <tr>
                 <th scope="row">${val.name}</th>
-                <td>Rp ${val.price}</td>
-                <td>${val.category_name}</td>
-                
+                <td>${val.description}</td>
+
                 <td>
                     <button class="btn btn-primary" id="read-button" data-id='` + val.id +`'>
                         <i class="fa fa-info-circle"></i>
@@ -20,11 +19,11 @@ function showBooks(){
                 </td>
             </tr>`);
     });
-    changeTitle("MARLO BOOK STORE");
+    changeTitle("List Category");
 }
 
-function deleteBook(id_book) {
-    console.log(id_book)
+function deleteCategory(id_category) {
+    console.log(id_category)
     Swal.fire({
         title: 'Yakin akan menghapus?',
         text: "Data yang sudah dihapus tidak bisa dikembalikan!",
@@ -36,17 +35,17 @@ function deleteBook(id_book) {
     }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: "http://localhost:5000/api/book/delete.php",
+                url: "http://localhost:5000/api/category/delete.php",
                 type: "POST",
                 dataType: "json",
-                data: JSON.stringify({id : id_book}),
+                data: JSON.stringify({id : id_category}),
                 success : function(res) {
                     Swal.fire(
                         'Berhasil dihapus!',
                         'Datamu telah dihapus dari database',
                         'success'
                     )
-                    showBooks();
+                    // showBooks();
                 },
                 error: function(xhr,resp, text) {
                     console.log(text);
@@ -56,20 +55,10 @@ function deleteBook(id_book) {
     })
 }
 
-showBooks();
+showCategories();
 
-$(document).on('click', '#read-button', function() {
-    var id_book = $(this).attr('data-id');
-    window.location.href = 'read-one?id=' + id_book;
-    changeTitle("Detail Buku");
-
-})
-$(document).on('click', '#edit-button', function() {
-    var id_book = $(this).attr('data-id');
-    window.location.href = 'update-book?id=' + id_book;
-})
 $(document).on('click', '#delete-button', function() {
-    var id_book = $(this).attr('data-id');
-    console.log(id_book)
-    deleteBook(id_book);
+    var id_category = $(this).attr('data-id');
+    console.log(id_category)
+    deleteBook(id_category);
 })

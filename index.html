@@ -2,27 +2,31 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="app/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="app/assets/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="app/assets/css/style.css">
     <title>AJAX - API CRUD BOOK</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="#">WELCOME ADMIN | <b>MARLO BOOK STORE</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -31,30 +35,41 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/create-book">Tambah Buku</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/todo">To Do List</a>
-                    </li> -->
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
     <!-- app nya bakal dipanggi disini -->
-    <div id="app"></div>
+    <div class="row no-gutters conta">
+        <div class="col-md-2 bg-dark pr-3 pt-4 sidebar">
+            <ul class="nav flex-column ml-3 mb-5">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" href="/dashboard"><i class="fa fa-tachometer mr-4"></i>Dashboard</a><hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/read-book"><i class="fa fa-book mr-4"></i>List of Books</a><hr class="bg-secondary">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/read-category"><i class="fa fa-list mr-4"></i>List of Categories</a><hr class="bg-secondary">
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 p-2 pt-2 main">
+            <!-- konten bakal keisi disini  -->
+            <div id="app"></div>
+        </div>
+    </div>
 
 
     <!-- buat ajax nya -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="app/assets/js/jquery-3.3.1.js"></script>
     <script src="app/app.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
-    </script>
-    <!-- <script src="app/books/read-book.js"></script> -->
-    <!-- <script src="app/books/create-book.js"></script> -->
+    <script src="app/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="app/assets/js/popper.min.js"></script>
+    <script src="app/assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
 

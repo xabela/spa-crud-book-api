@@ -1,7 +1,30 @@
-#create-book, #read-book {
+.nav-link:hover {
+    background-color: grey;
+}
+#create-book, #read-book, #create-category {
     float: right;
 }
 
-#page-title {
-    text-align: center;
+.display-4 {
+    font-weight: bold;
 }
+
+#submit-create-book-form, #submit-update-book-form{
+    display: block;
+    margin: 0 auto;
+}
+.center {
+    margin: 0 auto;
+}
+
+.card-text {
+    float: right;
+}
+
+.sidebar {
+    margin-bottom: -500px; /* any large number will do */
+    padding-bottom: 500px;
+}
+/* #page-title {
+    text-align: center;
+} */

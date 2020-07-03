@@ -10,7 +10,6 @@ function readOne(id) {
         $('#detail-description').html(data.description)
         $('#detail-category').html(data.category_name)
     });
-    changeTitle("Detail Buku");
 }
 
 readOne(id);
