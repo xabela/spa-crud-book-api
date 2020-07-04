@@ -24,6 +24,7 @@ function showBooks(){
 }
 
 function searchBook(keyword) {
+    console.log('mencari')
     $('#tabel-buku').empty(); //ngosingin isinya dulu, biar pas nambah atau ngehapus langsung bisa ngeload baru
     // console.log(keyword)
     $.getJSON("http://localhost:5000/api/book/search.php?s=" + keyword, function(data) {
@@ -52,7 +53,6 @@ function searchBook(keyword) {
 }
 
 function deleteBook(id_book) {
-    console.log(id_book)
     Swal.fire({
         title: 'Yakin akan menghapus?',
         text: "Data yang sudah dihapus tidak bisa dikembalikan!",
@@ -73,8 +73,12 @@ function deleteBook(id_book) {
                         'Berhasil dihapus!',
                         'Datamu telah dihapus dari database',
                         'success'
-                    )
-                    window.location.href='/read-book'
+                        )
+                    getBook()
+                    setTimeout(function(){ 
+                        showBooks()
+                    }, 100);
+                    // window.location.href='/read-book'
                 },
                 error: function(xhr,resp, text) {
                     console.log(text);
@@ -88,13 +92,14 @@ showBooks();
 
 $(document).on('click', '#read-button', function() {
     var id_book = $(this).attr('data-id');
-    window.location.href = 'read-one?id=' + id_book;
+    goTo(null, 'read-one?id=' + id_book);
     changeTitle("Detail Buku");
 
 })
 $(document).on('click', '#edit-button', function() {
     var id_book = $(this).attr('data-id');
-    window.location.href = 'update-book?id=' + id_book;
+    goTo(null, 'update-book?id=' + id_book);
+    // window.location.href = 'update-book?id=' + id_book;
 })
 $(document).on('click', '#delete-button', function() {
     var id_book = $(this).attr('data-id');

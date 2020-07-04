@@ -15,7 +15,6 @@ function updateBook(id) {
         $('#id-book').val(id);
         let kat = '';
         $.each(list_category, function(key, val) {
-            console.log(data);
             if (val.id == id) { kat += `<option value='` + val.id + `' selected>` + val.name + `</option>`; }
             else { kat += `<option value='` + val.id + `'>` + val.name + `</option>`; }
         });

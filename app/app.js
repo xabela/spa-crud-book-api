@@ -2,37 +2,80 @@ var list_book = [];
 var list_category = [];
 
 function init() {
-    getBook();
-    getCategory();
+    let pathName = window.location.pathname.split('/')
+    let page = pathName[1] == "" ? "dashboard" : pathName[1];
+    console.log(pathName[1]);
+    var url = new URL(window.location.href)
+    var id = url.searchParams.get("id")
+    if(id != null){
+        goTo(null, `${page}?id=${id}`)
+    } else {
+        // getBook();
+        getCategory();
+        getBook()
+        // setTimeout(function(){ 
+        //     showBooks()
+        // }, 100);
+        goTo(null, page)
+    }
 }
 
 init();
 
-let pathName = window.location.pathname.split('/')
-console.log(pathName);
-let page = pathName[1] == "" ? "dashboard" : pathName[1];
-console.log(pathName[1]);
-var app_html = `
-            <div class="page-header mt-4 ml-2">
-                <h3 id="page-title"><b></b></h3><hr>
-            </div>
-            <div id="page-content"></div> 
-    `;
-    $('#app').html(app_html);
+window.addEventListener("popstate", function() {
+    goTo(null, window.location.pathname.split('/')[1])
+})
 
+
+
+function goTo(e, page) {
+    console.log('you go to ', page);
+    if (e !== null) {
+        e.preventDefault();
+    }
+
+    if (page == 'dashboard' || page == '') {
+        window.history.pushState("object or string", "", '/');
+        getTemplate(page)
+    } else {
+        window.history.pushState("object or string", "", `/${page}`);
+        var url = new URL(window.location.href)
+        var id = url.searchParams.get("id")
+        if(id != null){
+            console.log('idnya tidak null')
+            getTemplate(window.location.pathname.split('/')[1])
+        } else {
+            getTemplate(page)
+        }
+    }
+    // if (page == 'dashboard' || page == '') {
+    //     window.history.pushState("object or string", "", '/');
+    //     getTemplate(page)
+    // } else if (page == 'read-book') {
+    //     window.history.pushState("object or string", "", '/read-book');
+    //     getTemplate(page)
+    // } else if (page == 'read-category') {
+    //     window.history.pushState("object or string", "", '/read-category');
+    //     getTemplate(page)
+    // } else if (page == 'create-book') {
+    //     window.history.pushState("object or string", "", '/create-book');
+    //     getTemplate(page)
+    // }
+}
+function getTemplate(page) {
     $.ajax({
-        url: `http://localhost:5000/route.php?page=${page}`,
+        url: "http://localhost:5000/route.php?page=" + page,
         type: "GET",
         "content-type": "application/json; charset=utf-8",
         data: {},
         success: function(res) {
             let data = JSON.parse(res);
-            console.log(data);
-            $('#page-content').append(data.content);
+            $('#app').html(data.content);
         }, error: function(res) {
             console.log(res.responseText);
         }
     });
+}
 
 function changeTitle(page_title){
     $('#page-title').text(page_title);
@@ -59,7 +102,9 @@ function ajaxUpdate(data) {
         data: data,
         success: function(result){
             console.log(result)
-            window.location.href = "read-book"
+            getBook()
+            showBooks()
+            goTo(null, 'read-book')
         }, 
         error: function(xhr, resp, text) {
             console.log(text);
@@ -68,6 +113,8 @@ function ajaxUpdate(data) {
 }
 
 function ajaxCreate(data) {
+    console.log('masuk ke ajax create')
+    // return
     $.ajax({
         url: "http://localhost:5000/api/book/create.php",
         type: "POST",
@@ -75,7 +122,9 @@ function ajaxCreate(data) {
         data: data,
         success: function(result){
             console.log(result)
-            window.location.href = "read-book"
+            getBook()
+            showBooks()
+            goTo(null, 'read-book')
         }, 
         error: function(xhr, resp, text) {
             console.log(text);

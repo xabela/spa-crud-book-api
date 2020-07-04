@@ -19,7 +19,7 @@ function showCategories(){
                 </td>
             </tr>`);
     });
-    changeTitle("List Category");
+    changeTitle("LIST CATEGORY");
 }
 
 function deleteCategory(id_category) {
@@ -60,5 +60,5 @@ showCategories();
 $(document).on('click', '#delete-button', function() {
     var id_category = $(this).attr('data-id');
     console.log(id_category)
-    deleteBook(id_category);
+    deleteCategory(id_category);
 })

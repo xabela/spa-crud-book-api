@@ -16,8 +16,4 @@ function createBook() {
     });
     changeTitle("Create Book");
 };
-
 createBook();    
-$(document).on('click', '#submit-create-book-form', function() {
-    showBooks();
-})
