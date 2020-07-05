@@ -101,7 +101,21 @@ function ajaxUpdate(data) {
 }
 
 function ajaxCreate(data) {
-    
+    $.ajax({
+        url: "http://localhost:5000/api/book/create.php",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(result){
+            console.log(result)
+            getBook()
+            showBooks()
+            goTo(event, 'read-book')
+        }, 
+        error: function(xhr, resp, text) {
+            console.log(text);
+        }
+    });
 }
 
 function ajaxCreateCategory(data) {
@@ -112,7 +126,9 @@ function ajaxCreateCategory(data) {
         data: data,
         success: function(result){
             console.log(result)
-            window.location.href = "read-category"
+            getCategory()
+            showCategories()
+            goTo(event, 'read-category')
         }, 
         error: function(xhr, resp, text) {
             console.log(text);

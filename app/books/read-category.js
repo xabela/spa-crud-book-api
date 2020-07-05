@@ -13,7 +13,7 @@ function showCategories(){
                     <button class="btn btn-info" id="edit-button" data-id='` + val.id +`'>
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger" id="delete-button" data-id='` + val.id +`'>
+                    <button class="btn btn-danger" id="delete-button-category" data-id='` + val.id +`'>
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -23,7 +23,7 @@ function showCategories(){
 }
 
 function deleteCategory(id_category) {
-    console.log(id_category)
+    // console.log(id_category)
     Swal.fire({
         title: 'Yakin akan menghapus?',
         text: "Data yang sudah dihapus tidak bisa dikembalikan!",
@@ -45,7 +45,10 @@ function deleteCategory(id_category) {
                         'Datamu telah dihapus dari database',
                         'success'
                     )
-                    // showBooks();
+                    getCategory()
+                    setTimeout(function(){ 
+                        showCategories()
+                    }, 100);
                 },
                 error: function(xhr,resp, text) {
                     console.log(text);
@@ -57,8 +60,8 @@ function deleteCategory(id_category) {
 
 showCategories();
 
-$(document).on('click', '#delete-button', function() {
+$(document).on('click', '#delete-button-category', function() {
     var id_category = $(this).attr('data-id');
-    console.log(id_category)
+    // console.log(id_category)
     deleteCategory(id_category);
 })
