@@ -3,7 +3,7 @@ var list_category = [];
 
 function init() {
     let pathName = window.location.pathname.split('/')
-    let page = pathName[1] == "" ? "dashboard" : pathName[1];
+    let page = pathName[1] == "" ? "login" : pathName[1];
     console.log(pathName[1]);
     var url = new URL(window.location.href)
     var id = url.searchParams.get("id")
@@ -23,7 +23,7 @@ function init() {
 init();
 
 window.addEventListener("popstate", function() {
-    goTo(null, window.location.pathname.split('/')[1])
+    goTo(null, window.location.pathname.split('/')[1]) //buat back
 })
 
 
@@ -34,9 +34,12 @@ function goTo(e, page) {
         e.preventDefault();
     }
 
-    if (page == 'dashboard' || page == '') {
+    if (page == 'login' || page == '') {
         window.history.pushState("object or string", "", '/');
-        getTemplate(page)
+        getTemplate2(page)
+    } else if (page == 'register') {
+        window.history.pushState("object or string", "", '/');
+        getTemplate2(page)
     } else {
         window.history.pushState("object or string", "", `/${page}`);
         var url = new URL(window.location.href)
@@ -59,6 +62,20 @@ function getTemplate(page) {
             let data = JSON.parse(res);
             $('#header').html(data.header);
             $('#app').html(data.content);
+        }, error: function(res) {
+            console.log(res.responseText);
+        }
+    });
+}
+function getTemplate2(page) {
+    $.ajax({
+        url: "http://localhost:5000/route-regis-login.php?page=" + page,
+        type: "GET",
+        "content-type": "application/json; charset=utf-8",
+        data: {},
+        success: function(res) {
+            let data = JSON.parse(res);
+            $('#header').html(data.content);
         }, error: function(res) {
             console.log(res.responseText);
         }

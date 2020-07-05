@@ -25,6 +25,16 @@
     margin-bottom: -500px; /* any large number will do */
     padding-bottom: 500px;
 }
-/* #page-title {
-    text-align: center;
-} */
+
+.card-register, .card-login {
+    margin-top: 10rem;
+}
+
+.card-text-register, .card-text-login {
+    width: fit-content;
+    margin: 0 auto
+}
+
+#button-register, #button-login {
+    float: right
+}
