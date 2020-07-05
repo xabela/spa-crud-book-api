@@ -13,6 +13,9 @@ function createBook() {
         };
         form_data = JSON.stringify(form_data);
         ajaxCreate(form_data);
+        getBook()
+        showBooks()
+        goTo(null, 'read-book')
     });
     changeTitle("Create Book");
 };

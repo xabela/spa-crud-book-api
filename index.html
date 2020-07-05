@@ -13,43 +13,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand" href="#">WELCOME ADMIN | <b>MARLO BOOK STORE</b></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <!-- app nya bakal dipanggi disini -->
-    <div class="row no-gutters conta">
-        <div class="col-md-2 bg-dark pr-3 pt-4 sidebar">
-            <ul class="nav flex-column ml-3 mb-5">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" href="" onclick="goTo(event, 'dashboard')"><i
-                            class="fa fa-tachometer mr-4"></i>Dashboard</a>
-                    <hr class="bg-secondary">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="" onclick="goTo(event, 'read-book')"><i
-                            class="fa fa-book mr-4"></i>List of Books</a>
-                    <hr class="bg-secondary">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="" onclick="goTo(event, 'read-category')"><i
-                            class="fa fa-list mr-4"></i>List of Categories</a>
-                    <hr class="bg-secondary">
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-10 p-2 pt-2 main">
-            <!-- konten bakal keisi disini  -->
-            <div class="page-header mt-4 ml-2">
-                <h3 id="page-title"><b></b></h3>
-                <hr>
-            </div>
-            <div id="app"></div>
-        </div>
-    </div>
+    <div id="header"></div>
+        
 
 
     <!-- buat ajax nya -->

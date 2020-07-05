@@ -48,19 +48,6 @@ function goTo(e, page) {
             getTemplate(page)
         }
     }
-    // if (page == 'dashboard' || page == '') {
-    //     window.history.pushState("object or string", "", '/');
-    //     getTemplate(page)
-    // } else if (page == 'read-book') {
-    //     window.history.pushState("object or string", "", '/read-book');
-    //     getTemplate(page)
-    // } else if (page == 'read-category') {
-    //     window.history.pushState("object or string", "", '/read-category');
-    //     getTemplate(page)
-    // } else if (page == 'create-book') {
-    //     window.history.pushState("object or string", "", '/create-book');
-    //     getTemplate(page)
-    // }
 }
 function getTemplate(page) {
     $.ajax({
@@ -70,6 +57,7 @@ function getTemplate(page) {
         data: {},
         success: function(res) {
             let data = JSON.parse(res);
+            $('#header').html(data.header);
             $('#app').html(data.content);
         }, error: function(res) {
             console.log(res.responseText);
@@ -113,23 +101,7 @@ function ajaxUpdate(data) {
 }
 
 function ajaxCreate(data) {
-    console.log('masuk ke ajax create')
-    // return
-    $.ajax({
-        url: "http://localhost:5000/api/book/create.php",
-        type: "POST",
-        contentType: "application/json",
-        data: data,
-        success: function(result){
-            console.log(result)
-            getBook()
-            showBooks()
-            goTo(null, 'read-book')
-        }, 
-        error: function(xhr, resp, text) {
-            console.log(text);
-        }
-    });
+    
 }
 
 function ajaxCreateCategory(data) {
