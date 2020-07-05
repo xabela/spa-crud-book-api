@@ -3,7 +3,7 @@
         <div class="card-body">
             <h5 class="card-title text-center mb-5">Login</h5>
             <div class="card-text-login">
-                <form style="width: 20rem;">
+                <form onsubmit="createLogin();" action="javascript:void(0);" method="POST" style="width: 20rem;">
                     <div class="form-group">
                         <input type="email" class="form-control" id="email" placeholder="Email">
                     </div>
@@ -16,7 +16,8 @@
                 </form>
             </div>
         </div>
-        <small class="mb-3 text-center">Dont have an account? <a href="" onclick="goTo(event, 'register')">Sign Up</a></small>
+        <small class="mb-3 text-center">Dont have an account? <a href="" onclick="goTo(event, 'register')">Sign
+                Up</a></small>
     </div>
 </div>
 

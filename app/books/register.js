@@ -1,5 +1,4 @@
 function register() {
-    $(document).on('click', '#button-register', function(e) {
         var form_data = {
             'firstname' : $("#firstname").val(),
             'lastname' : $("#lastname").val(),
@@ -13,15 +12,12 @@ function register() {
             contentType : 'application/json',
             data : form_data,
             success : function(result) {
-                console.log(result)
-                console.log(result.status)
-                goTo(null, 'login')
+                console.log(result);
+                goTo(event,'login');
             },
             error: function(xhr, resp, text){
                 console.log(text)
             }
         });
-    });
     // changeTitle("Create Book");
 };
-register();    

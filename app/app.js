@@ -53,6 +53,8 @@ function goTo(e, page) {
     }
 }
 function getTemplate(page) {
+    var jwt = getCookie('jwt');
+    $.post("http://localhost:5000/api/user/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
     $.ajax({
         url: "http://localhost:5000/route.php?page=" + page,
         type: "GET",
@@ -61,11 +63,13 @@ function getTemplate(page) {
         success: function(res) {
             let data = JSON.parse(res);
             $('#header').html(data.header);
+            $('#email').html(result.data.email);
             $('#app').html(data.content);
         }, error: function(res) {
             console.log(res.responseText);
         }
     });
+});
 }
 function getTemplate2(page) {
     $.ajax({
@@ -118,7 +122,21 @@ function ajaxUpdate(data) {
 }
 
 function ajaxCreate(data) {
-    
+    $.ajax({
+        url: "http://localhost:5000/api/book/create.php",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(result){
+            console.log(result)
+            getBook()
+            showBooks()
+            goTo(event, 'read-book')
+        }, 
+        error: function(xhr, resp, text) {
+            console.log(text);
+        }
+    });
 }
 
 function ajaxCreateCategory(data) {
@@ -129,10 +147,36 @@ function ajaxCreateCategory(data) {
         data: data,
         success: function(result){
             console.log(result)
-            window.location.href = "read-category"
+            getCategory()
+            showCategories()
+            goTo(event, 'read-category')
         }, 
         error: function(xhr, resp, text) {
             console.log(text);
         }
     });
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+ // get or read cookie
+function getCookie(cname){
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' '){
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
