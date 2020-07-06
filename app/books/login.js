@@ -1,3 +1,5 @@
+gapi.g-signin2.render();
+
 function createLogin() {
     var form_data = {
         'email' : $("#email").val(),
@@ -28,3 +30,18 @@ function createLogin() {
     });
 // changeTitle("Create Book");
 };
+
+var userData = '';
+
+function onSignIn(googleUser) {
+    console.log('User is' + JSON.stringify(googleUser.getBasicProfile()))
+    userData = googleUser.getBasicProfile().getName();
+    console.log(userData);
+    if (!userData) {
+        // ininanti error ya
+    }
+
+    //window.location.href = 'index.html';
+    goTo(event, 'dashboard')
+    window.localStorage.setItem('google_sign_in', true);
+}

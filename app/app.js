@@ -10,7 +10,6 @@ function init() {
     if(id != null){
         goTo(null, `${page}?id=${id}`)
     } else {
-        // getBook();
         getCategory();
         getBook()
         // setTimeout(function(){ 
@@ -63,7 +62,7 @@ function getTemplate(page) {
         success: function(res) {
             let data = JSON.parse(res);
             $('#header').html(data.header);
-            $('#email').html(result.data.email);
+            $('#email').html(userData);
             $('#app').html(data.content);
         }, error: function(res) {
             console.log(res.responseText);

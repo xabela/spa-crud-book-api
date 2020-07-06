@@ -30,9 +30,8 @@
                 <hr class="bg-secondary">
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="" onclick="goTo(event, 'login')"><i
-                        class="fa fa-sign-out mr-4"></i>Log Out</a>
-                <hr class="bg-secondary">
+                <button id='sign-out' class='btn btn-primary sign-out-product' onclick="signOut()">Sign Out</button>
+
             </li>
         </ul>
     </div>
@@ -45,3 +44,18 @@
         <div id="app"></div>
     </div>
 </div>
+
+<script>
+    function signOut() {
+        //document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        if (window.localStorage.getItem('google_sign_in')){
+            gapi.auth2.getAuthInstance().signOut().then(function () {
+                sessionStorage.clear();
+                window.localStorage.removeItem('google_sign_in')
+            })
+        }
+    
+        console.log('user signed out')
+        goTo(event, 'login')
+    }
+</script>
