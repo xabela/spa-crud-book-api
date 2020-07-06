@@ -21,10 +21,59 @@
     float: right;
 }
 
-.sidebar {
-    margin-bottom: -500px; /* any large number will do */
-    padding-bottom: 500px;
-}
+
+
 /* #page-title {
     text-align: center;
 } */
+
+#wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  /* background-color: #7386D5; */
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 30px;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .lsit {
+  width: 15rem;
+}
+
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+.card-deck .card {
+  width: 18rem !important;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
