@@ -1,3 +1,12 @@
+window.onload = () => {
+'use strict';
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+            .register('./sw.js');
+}
+}
+
 var list_book = [];
 var list_category = [];
 

@@ -43,5 +43,5 @@ function onSignIn(googleUser) {
 
     //window.location.href = 'index.html';
     goTo(event, 'dashboard')
-    window.localStorage.setItem('google_sign_in', true);
+    //window.localStorage.setItem('google_sign_in', true);
 }
